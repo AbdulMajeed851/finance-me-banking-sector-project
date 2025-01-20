@@ -27,7 +27,7 @@
     - name: Deploy Docker Container
       docker_container:
         name: finance-me-banking-container
-        image: abdulmajeed951/finance-me-banking:latest
+        image: abdulmajeed951/finance-me-banking:v1.0
         state: started
         restart_policy: always
         published_ports:
