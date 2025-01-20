@@ -1,34 +1,16 @@
-- name: Configure Docker on EC2 Instances
-  hosts: all
+- name : Configure Docker on EC2 Instances
+  hosts : all
   become: true
-  connection: ssh
-  tasks:
-    - name: Update apt package index
-      apt:
-        update_cache: yes
+  connection : ssh
+  tasks : 
+  - name: updating apt
+    command : sudo apt-get update
 
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
+  - name : Install Docker
+    command : sudo apt-get install -y docker.io
 
-    - name: Start Docker Service
-      service:
-        name: docker
-        state: started
-        enabled: true
+  - name : Start Docker Service
+    command : sudo systemctl start docker
 
-    - name: Docker login
-      docker_login:
-        username: "abdulmajeed951"
-        password: "K@Br5h-$2TwBjb8"
-        registry: "https://index.docker.io/v1/"
-
-    - name: Deploy Docker Container
-      docker_container:
-        name: finance-me-banking-container
-        image: abdulmajeed951/finance-me-banking:v1.0
-        state: started
-        restart_policy: always
-        published_ports:
-          - "8088:8081"
+  - name: Deploy Docker Container
+    command: docker run -itd -p 8088:8081 abdulmajeed951/finance-me-banking:v1.0
