@@ -21,7 +21,7 @@
     - name: Docker login
       docker_login:
         username: "abdulmajeed951"
-        password: "{{ dockerhub_password }}"
+        password: "K@Br5h-$2TwBjb8"
         registry: "https://index.docker.io/v1/"
 
     - name: Deploy Docker Container
